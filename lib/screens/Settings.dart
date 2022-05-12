@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smarthealth/constants.dart';
 
 class Settings extends StatelessWidget {
   static String id = 'settings';
@@ -8,8 +9,18 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
-        body: Container(),
+        appBar: AppBar(
+          title: const Text(
+            'settings',
+            style: TextStyle(color: kPrimaryColor),
+          ),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text('Coing soon'),
+          ],
+        ),
       ),
     );
   }

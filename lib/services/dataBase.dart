@@ -10,17 +10,9 @@ class DatabaseServices {
     final inputRef = database.child('input/');
     inputRef.update({
       'temperature': 34,
-      'bloodPressure': 115,
+      'breathingRate': 115,
       'oxygenSaturation': 16,
       'pulseRate': 22
-    });
-  }
-
-  //add to init state and deactivate after
-  //add late  StreamSubscription _dataListenerStream;
-  dataStreamListener() {
-    database.child('input/temperature').onValue.listen((event) {
-      final double? data = event.snapshot.value as double?;
     });
   }
 }

@@ -1,14 +1,10 @@
 import 'package:smarthealth/constants.dart';
-// import 'package:smarthealth/screens/onBoardingPage.dart';
-//
-// import 'services/Devices.dart';
-// import 'screens/Home screen.dart';
-// import 'screens/Settings.dart';
-// import 'screens/AddDevice.dart';
-// import 'screens/Individual%20page.dart';
 import 'package:flutter/material.dart';
-import 'package:smarthealth/screens/WelcomePage.dart';
+import 'package:smarthealth/screens/ContactUs.dart';
+import 'package:smarthealth/screens/Home%20screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:smarthealth/screens/Settings.dart';
+import 'package:smarthealth/screens/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,27 +25,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           backgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
             iconTheme: IconThemeData(color: kPrimaryColor),
-            color: Colors.deepOrange,
+            // color: Colors.white,
           ),
-          primaryColor: Colors.deepOrange),
+          primaryColor: kPrimaryColor),
       debugShowCheckedModeBanner: false,
       title: 'SmartHealth',
-
-      home: WelcomePage(),
-      // routes: {
-      //   //SplashScreen.id: (context) => SplashScreen(),
-      //   HomeScreen.id: (context) => const HomeScreen(
-      //         pusleRate: '',
-      //         temperature: '',
-      //         heartRate: '',
-      //         bloodPressure: '',
-      //       ),
-      //   AddDevice.id: (context) => AddDevice(),
-      //   Devices.id: (context) => Devices(),
-      //   Settings.id: (context) => Settings(),
-      //   IndividualPage.id: (context) => IndividualPage(),
-      // },
+      home: SplashScreen(
+        goToPage: HomeScreen(),
+        duration: 2,
+      ),
+      routes: {
+        HomeScreen.id: (context) => HomeScreen(),
+        Settings.id: (context) => Settings(),
+        ContactUs.id: (context) => ContactUs(),
+      },
     );
   }
 }

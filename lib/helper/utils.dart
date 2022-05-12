@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smarthealth/helper/wifiConnectHelper.dart';
-
+import '../widgets/charts.dart';
 import '../model/liveData.dart';
 import 'onBoardingHelper.dart';
 
@@ -19,39 +18,40 @@ class Utils {
     ];
   }
 
-  static List<WifiConnectHelper> getWifiConnect() {
+  static List<Widget> getChartContents() {
     return [
-      WifiConnectHelper(
-          button: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateColor.resolveWith((states) => Colors.deepOrange),
-            ),
-            onPressed: () {},
-            child: const Text('connect'),
-          ),
-          name: 'device name goes here')
+      const Charts(
+        value: 'input/pulseRate',
+        index: 0,
+        title: 'PulseRate',
+      ),
+      const Charts(
+        value: 'input/temperature',
+        index: 1,
+        title: 'Temperature',
+      ),
+      const Charts(
+        value: 'input/breathingRate',
+        index: 2,
+        title: 'BreathingRate',
+      ),
+      const Charts(
+        value: 'input/oxygenSaturation',
+        index: 3,
+        title: 'OxygenSaturation',
+      ),
     ];
   }
 
-  static List<LiveData> getTempChartData() {
+  static List<LiveData> getOxygenSaturationChartData() {
     return <LiveData>[
       LiveData(0, 0),
       LiveData(1, 7),
-      LiveData(
-        2,
-        17,
-      ),
-      LiveData(
-        3,
-        5,
-      ),
+      LiveData(2, 17),
+      LiveData(3, 5),
       LiveData(4, 11),
       LiveData(5, 8),
-      LiveData(
-        6,
-        12,
-      ),
+      LiveData(6, 12),
       LiveData(7, 7),
       LiveData(8, 4),
       LiveData(9, 15),
@@ -59,7 +59,7 @@ class Utils {
     ];
   }
 
-  static List<LiveData> getBPChartData() {
+  static List<LiveData> getBreathingRateChartData() {
     return <LiveData>[
       LiveData(0, 0),
       LiveData(1, 4),
@@ -75,7 +75,7 @@ class Utils {
     ];
   }
 
-  static List<LiveData> getOYGChartData() {
+  static List<LiveData> getTemperatureChartData() {
     return <LiveData>[
       LiveData(0, 0),
       LiveData(1, 2),
@@ -91,7 +91,7 @@ class Utils {
     ];
   }
 
-  static List<LiveData> getPulseChartData() {
+  static List<LiveData> getPulseRateChartData() {
     return <LiveData>[
       LiveData(0, 0),
       LiveData(1, 4),
