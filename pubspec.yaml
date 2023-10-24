@@ -40,11 +40,11 @@ dependencies:
   #wifi_iot: ^0.3.15
   #turns out this is the actual phone to phone connect plugin, time will tell!
   #flutter_wifi_connect: ^0.0.7
-  syncfusion_flutter_charts: ^19.3.54
+  syncfusion_flutter_charts: ^23.1.42
   google_fonts:
   #firebase packages
-  firebase_database: ^9.0.8
-  firebase_core: ^1.14.0
+  firebase_database: ^10.3.2
+  firebase_core: ^2.20.0
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +55,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class SplashScreen extends StatefulWidget {
   static String id = 'start';
 
@@ -34,7 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Define an async function to initialize FlutterFire
   void initializeFlutterFire() async {
-    await Firebase.initializeApp();
+    if(!Platform.isWindows){
+      await Firebase.initializeApp();
+    }
+    
     try {
       // Wait for Firebase to initialize and set `_initialized` state to true
       setState(() {

@@ -48,3 +48,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+//Changed 4 constraints in pubspec.yaml:
+ // syncfusion_flutter_charts: ^19.3.54 -> ^23.1.42
+  //firebase_database: ^9.0.8 -> ^10.3.2
+  //firebase_core: ^1.14.0 -> ^2.20.0
+  //flutter_lints: ^1.0.0 -> ^3.0.0
