@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:smarthealth/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:smarthealth/screens/ContactUs.dart';
@@ -8,7 +10,9 @@ import 'package:smarthealth/screens/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if (!Platform.isWindows) {
+    await Firebase.initializeApp();
+  }
   runApp(const MyApp());
 }
 
