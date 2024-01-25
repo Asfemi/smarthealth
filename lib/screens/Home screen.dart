@@ -254,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   border: Border.all(
                                       width: 6,
                                       color: pageIndex == index
-                                          ? kPrimaryColor.shade100
+                                          ? kPrimaryColor
                                           : Theme.of(context).canvasColor),
                                 ),
                               ),
