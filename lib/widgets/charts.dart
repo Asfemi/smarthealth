@@ -47,7 +47,7 @@ class _ChartsState extends State<Charts> {
       chartsData3,
       chartsData4,
     ];
-    // TODO: implement initState
+  
     super.initState();
   }
 
@@ -55,7 +55,6 @@ class _ChartsState extends State<Charts> {
   void deactivate() {
     //_chartSeriesController.
     _dataStream.cancel();
-    // TODO: implement activate
     super.deactivate();
   }
 
@@ -97,7 +96,7 @@ class _ChartsState extends State<Charts> {
     final mediaQueryData = MediaQuery.of(context);
 
     return MediaQuery(
-      data: mediaQueryData.copyWith(textScaleFactor: 0.5),
+      data: mediaQueryData.copyWith(textScaler: const TextScaler.linear(0.5)),
       child: SfCartesianChart(
         margin: const EdgeInsets.all(0.0),
         title: ChartTitle(text: widget.title),
