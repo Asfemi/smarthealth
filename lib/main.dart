@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:smarthealth/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:smarthealth/screens/Authentication.dart';
+import 'package:smarthealth/screens/AuthenticationPage.dart';
 import 'package:smarthealth/screens/ContactUs.dart';
 import 'package:smarthealth/screens/Home%20screen.dart';
 import 'package:firebase_core/firebase_core.dart';

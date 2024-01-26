@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smarthealth/constants.dart';
+
+import '../widgets/google_sign_in_button.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthenticationPage extends StatefulWidget {
@@ -13,7 +15,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLightBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -55,6 +57,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   ],
                 ),
               ),
+              GoogleSignInButton(),
               // FutureBuilder(
               //   future: Authentication.initializeFirebase(context: context),
               //   builder: (context, snapshot) {
