@@ -47,7 +47,7 @@ class _ChartsState extends State<Charts> {
       chartsData3,
       chartsData4,
     ];
-  
+
     super.initState();
   }
 

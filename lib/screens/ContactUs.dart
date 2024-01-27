@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../constants.dart';
 
 class ContactUs extends StatefulWidget {
@@ -21,19 +21,31 @@ class _ContactUsState extends State<ContactUs> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            bigText('GitHub'),
+            GestureDetector(
+                onTap: () {
+                  launchUrl(Uri.parse('https//www.github.com/Asfemi'));
+                },
+                child: bigText('GitHub')),
             const SizedBox(height: 5),
-            smallText('github.com/Asfemi'),
+            // smallText('github.com/Asfemi'),
+            // const SizedBox(height: 20),
+            const Divider(thickness: 2),
+            GestureDetector(
+                onTap: () {
+                  launchUrl(
+                      Uri.parse('https://www.stackoverflow.com/users/13132398/asfemi'));
+                },
+                child: bigText('StackOverflow')),
+
             const SizedBox(height: 20),
             const Divider(thickness: 2),
-            bigText('StackOverflow'),
-            const SizedBox(height: 5),
-            smallText('stackoverflow.com/users/13132398/asfemi'),
-            const SizedBox(height: 20),
-            const Divider(thickness: 2),
-            bigText('LinkedIn'),
-            const SizedBox(height: 5),
-            smallText(''),
+            GestureDetector(
+                onTap: () {
+                  launchUrl(Uri.parse(
+                      'https://www.linkedin.com/in/ayodele-s-a0162116a/'));
+                },
+                child: bigText('LinkedIn')),
+
             const SizedBox(height: 20),
             const Divider(thickness: 2),
             bigText('Whatsapp'),
@@ -41,9 +53,12 @@ class _ContactUsState extends State<ContactUs> {
             smallText('08148429834'),
             const SizedBox(height: 20),
             const Divider(thickness: 2),
-            bigText('instagram'),
-            const SizedBox(height: 5),
-            smallText('Ayodele_Samuell'),
+            GestureDetector(
+                onTap: () {
+                  launchUrl(
+                      Uri.parse('https://www.instagram.com/ayodele_samuell/'));
+                },
+                child: bigText('Instagram')),
             const SizedBox(height: 20),
             const Divider(thickness: 2),
             bigText('twitter'),

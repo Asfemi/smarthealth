@@ -47,6 +47,11 @@ dependencies:
   firebase_core: ^2.20.0
   google_sign_in: ^6.2.1
   firebase_auth: ^4.16.0
+  url_launcher: ^6.2.4
+  fl_chart: ^0.66.1
+  one_clock: ^2.0.0
+  flutter_snake_navigationbar: ^0.6.1
+  line_icons: ^2.0.3
 
 dev_dependencies:
   flutter_test:
