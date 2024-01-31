@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smarthealth/constants.dart';
 import 'package:smarthealth/screens/Home%20screen.dart';
 import 'package:smarthealth/screens/ProfileScreen.dart';
-import 'package:smarthealth/screens/SettingsScreen.dart';
+import 'package:smarthealth/screens/Settings.dart';
 import 'package:smarthealth/widgets/navBar.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,10 +29,10 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: kLightBackgroundColor,
       body: IndexedStack(
         index: _currentIndex,
-        children: const [
-          HomeScreen(),
+        children:  [
+          const HomeScreen(),
           SettingsScreen(),
-          ProfileScreen(),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar:

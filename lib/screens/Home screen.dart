@@ -1,12 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:smarthealth/constants.dart';
+import 'package:smarthealth/screens/Settings.dart';
 import 'package:smarthealth/services/authentication.dart';
-
+import 'package:one_clock/one_clock.dart';
 import 'ContactUs.dart';
-import 'Settings.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'home page';
@@ -53,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
     //final List<Widget> content = Utils.getChartContents();
 
     //String backgroundImage =
-    'assets/national-cancer-institute-701-FJcjLAQ-unsplash.jpg';
+    //'assets/national-cancer-institute-701-FJcjLAQ-unsplash.jpg';
 
     Size size = MediaQuery.of(context).size;
     //MediaQuery.of(context).
@@ -122,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen>
               )),
         ],
         bottom: TabBar(
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           onTap: (int) {
             _tabController.index = _selectedIndex;
             //_tabController.animateTo(_selectedIndex);
@@ -236,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
               onTap: () {
-                Navigator.pushNamed(context, Settings.id);
+                Navigator.pushNamed(context, SettingsScreen.id);
               },
             ),
             Expanded(
@@ -277,7 +276,103 @@ class _HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          Container(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 40),
+                CircleAvatar(
+                  backgroundColor: kPrimaryColor,
+                  radius: 85,
+                  child: Container(
+                    padding: const EdgeInsets.all(4.0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: AnalogClock(
+                      isLive: true,
+                      width: 120,
+                      height: 120,
+                      showDigitalClock: false,
+                      datetime: DateTime(2024, 1, 1, 9, 12, 15),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 50),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Best Choices',
+                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  height: size.height * 0.25,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    //itemExtent: 3,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Card(
+                          color: index == 0 ? kPrimaryColor : Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 12.0),
+                            child: SizedBox(
+                              height: size.height * 0.2,
+                              width: size.width * 0.25,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    color: index == 0
+                                        ? Colors.white
+                                        : Colors.black,
+                                    padding: EdgeInsets.all(2),
+                                    child: Icon(
+                                      Icons.bar_chart,
+                                      size: 12,
+                                      color: index == 0
+                                          ? kPrimaryColor
+                                          : Colors.white,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '16',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                      color: index == 0
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Target',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: index == 0
+                                          ? Colors.white70
+                                          : Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
           Container(),
           Container(),
         ],

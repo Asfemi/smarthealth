@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         HomeScreen.id: (context) => HomeScreen(),
-        Settings.id: (context) => Settings(),
+        SettingsScreen.id: (context) => SettingsScreen(),
         ContactUs.id: (context) => const ContactUs(),
         AuthenticationPage.id: (context) => const AuthenticationPage(),
       },

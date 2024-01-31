@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smarthealth/constants.dart';
 
-class Settings extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
   static String id = 'settings';
   //const Settings({Key? key}) : super(key: key);
 
@@ -15,10 +15,10 @@ class Settings extends StatelessWidget {
             style: TextStyle(color: kPrimaryColor),
           ),
         ),
-        body: Column(
+        body: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text('Coing soon'),
+          children: [
+            Center(child: Text('Coing soon')),
           ],
         ),
       ),

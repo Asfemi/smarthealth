@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:smarthealth/screens/AuthenticationPage.dart';
-import 'package:smarthealth/screens/Home%20screen.dart';
 import 'package:smarthealth/screens/Homepage.dart';
 
 import '../constants.dart';
