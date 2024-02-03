@@ -52,6 +52,7 @@ dependencies:
   one_clock: ^2.0.0
   flutter_snake_navigationbar: ^0.6.1
   line_icons: ^2.0.3
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:

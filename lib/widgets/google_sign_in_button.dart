@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smarthealth/constants.dart';
 import 'package:smarthealth/screens/Homepage.dart';
 import 'package:smarthealth/services/authentication.dart';
@@ -13,12 +14,15 @@ class GoogleSignInButton extends StatefulWidget {
 }
 
 class _GoogleSignInButtonState extends State<GoogleSignInButton> {
-  ValueNotifier userCredential = ValueNotifier('');
+  //ValueNotifier userCredential = ValueNotifier('');
+  
 
   Widget buildNavigation(BuildContext context) {
+    
     return FutureBuilder(
       future: _login(),
       builder: (context, snapshot) {
+         
         return const Center(
             child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
@@ -44,21 +48,22 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context).userCredential;
     return Padding(
         padding: const EdgeInsets.only(bottom: 16.0),
         child: ValueListenableBuilder(
-            valueListenable: userCredential,
+            valueListenable: authProvider,
             builder: (context, value, child) {
-              return (userCredential.value == '' ||
-                      userCredential.value == null)
+              return (authProvider.value == '' ||
+                      authProvider.value == null)
                   ? Center(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                         child: InkWell(
                           onTap: () async {
-                            userCredential.value = await signInWithGoogle();
-                            if (userCredential.value != null) {
-                              log(userCredential.value.user!.email);
+                            authProvider.value = await AuthProvider(). signInWithGoogle();
+                            if (authProvider.value != null) {
+                              log(authProvider.value.user!.email);
                             }
                           },
                           child: Row(

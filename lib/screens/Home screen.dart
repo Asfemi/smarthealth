@@ -130,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey,
           controller: _tabController,
+        
           indicatorColor: Colors.transparent,
           dividerColor: kLightBackgroundColor,
           tabs: [
@@ -257,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 TextButton(
                   onPressed: () {
-                    signOutFromGoogle();
+                    AuthProvider().signOutFromGoogle();
 
                     Navigator.pop(context);
                   },

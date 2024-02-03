@@ -1,9 +1,17 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-Future<dynamic> signInWithGoogle() async {
+
+
+  class AuthProvider extends ChangeNotifier {
+  ValueNotifier userCredential = ValueNotifier(null);
+   
+
+
+   Future<dynamic> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -15,6 +23,9 @@ Future<dynamic> signInWithGoogle() async {
         idToken: googleAuth?.idToken,
       );
 
+        userCredential.value = credential;
+        notifyListeners();
+
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
      
@@ -22,12 +33,20 @@ Future<dynamic> signInWithGoogle() async {
     }
   }
 
-
-  Future<bool> signOutFromGoogle() async {
+  
+    Future<bool> signOutFromGoogle() async {
     try {
       await FirebaseAuth.instance.signOut();
+      userCredential.value = null;
+      notifyListeners();
       return true;
+      
     } on Exception catch (_) {
       return false;
     }
   }
+ 
+}
+
+
+ 

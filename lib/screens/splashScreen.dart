@@ -96,8 +96,6 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     }
 
-    
-
     return Scaffold(
       body: Container(
           decoration: const BoxDecoration(color: kLightBackgroundColor),
@@ -114,11 +112,11 @@ class _SplashScreenState extends State<SplashScreen> {
               FutureBuilder<User?>(
                 future: checkAuthStatus(),
                 builder: (context, snapshot) {
-                   if (snapshot.hasData) {
-            return _buildHomeScreen(); // Function to return HomeScreen widget
-          } else {
-            return _buildAuthenticationPage(); // Function to return AuthenticationPage widget
-          }
+                  if (snapshot.hasData) {
+                    return _buildHomeScreen(); // Function to return HomeScreen widget
+                  } else {
+                    return _buildAuthenticationPage(); // Function to return AuthenticationPage widget
+                  }
                 },
               )
             ],
@@ -136,14 +134,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget _buildAuthenticationPage() {
     Future.delayed(Duration(seconds: widget.duration), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => AuthenticationPage()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => AuthenticationPage()));
     });
     return Container();
   }
 }
-
-
 
 Widget somethingWentWrong() {
   return Scaffold(
