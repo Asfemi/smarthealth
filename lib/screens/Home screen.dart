@@ -2,7 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:smarthealth/constants.dart';
+import 'package:smarthealth/helper/utils.dart';
+import 'package:smarthealth/model/homecardData.dart';
 import 'package:smarthealth/screens/Settings.dart';
+import 'package:smarthealth/screens/chart_details.dart';
 import 'package:smarthealth/services/authentication.dart';
 import 'package:one_clock/one_clock.dart';
 import 'ContactUs.dart';
@@ -47,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen>
     super.deactivate();
   }
 
+  List<HomeCardData> cardData = Utils.getHomecardsContents();
+
   @override
   Widget build(BuildContext context) {
     //final List<Widget> content = Utils.getChartContents();
@@ -54,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen>
     //String backgroundImage =
     //'assets/national-cancer-institute-701-FJcjLAQ-unsplash.jpg';
 
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     //MediaQuery.of(context).
     return Scaffold(
       backgroundColor: collective ? kLightBackgroundColor : Colors.transparent,
@@ -130,7 +135,6 @@ class _HomeScreenState extends State<HomeScreen>
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey,
           controller: _tabController,
-        
           indicatorColor: Colors.transparent,
           dividerColor: kLightBackgroundColor,
           tabs: [
@@ -308,61 +312,71 @@ class _HomeScreenState extends State<HomeScreen>
                     style: TextStyle(fontSize: 23, fontWeight: FontWeight.w700),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 SizedBox(
                   height: size.height * 0.25,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 3,
+                    itemCount: cardData.length,
                     //itemExtent: 3,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Card(
-                          color: index == 0 ? kPrimaryColor : Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 16.0, horizontal: 12.0),
-                            child: SizedBox(
-                              height: size.height * 0.2,
-                              width: size.width * 0.25,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    color: index == 0
-                                        ? Colors.white
-                                        : Colors.black,
-                                    padding: EdgeInsets.all(2),
-                                    child: Icon(
-                                      Icons.bar_chart,
-                                      size: 12,
-                                      color: index == 0
-                                          ? kPrimaryColor
-                                          : Colors.white,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    '16',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChartDetailsScreen(index: index, )));
+                          },
+                          child: Card(
+                            color: index == 0 ? kPrimaryColor : Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16.0, horizontal: 12.0),
+                              child: SizedBox(
+                                height: size.height * 0.2,
+                                width: size.width * 0.25,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
                                       color: index == 0
                                           ? Colors.white
                                           : Colors.black,
+                                      padding: const EdgeInsets.all(2),
+                                      child: Icon(
+                                        Icons.bar_chart,
+                                        size: 12,
+                                        color: index == 0
+                                            ? kPrimaryColor
+                                            : Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Target',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: index == 0
-                                          ? Colors.white70
-                                          : Colors.grey,
+                                    const Spacer(),
+                                    Text(
+                                      cardData[index].value.toString(),
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20,
+                                        color: index == 0
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      cardData[index].name,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: index == 0
+                                            ? Colors.white70
+                                            : Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

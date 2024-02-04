@@ -82,19 +82,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Size size = MediaQuery.of(context).size;
 
-    Future<User?> checkAuthStatus() async {
-      try {
-        final user = await FirebaseAuth.instance.currentUser;
-        if (user != null) {
-          return user;
-        } else {
-          return null;
-        }
-      } catch (e) {
-        log(e.toString()); // Handle errors here
-        return null;
-      }
-    }
+    // Future<User?> checkAuthStatus() async {
+    //   try {
+    //     final user = await FirebaseAuth.instance.currentUser;
+    //     if (user != null) {
+    //       return user;
+    //     } else {
+    //       return null;
+    //     }
+    //   } catch (e) {
+    //     log(e.toString()); // Handle errors here
+    //     return null;
+    //   }
+    // }
 
     return Scaffold(
       body: Container(
@@ -109,28 +109,29 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: size.shortestSide * 0.3,
                 ),
               ),
-              FutureBuilder<User?>(
-                future: checkAuthStatus(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return _buildHomeScreen(); // Function to return HomeScreen widget
-                  } else {
-                    return _buildAuthenticationPage(); // Function to return AuthenticationPage widget
-                  }
-                },
-              )
+              _buildAuthenticationPage()
+              // FutureBuilder<User?>(
+              //   future: checkAuthStatus(),
+              //   builder: (context, snapshot) {
+              //     if (snapshot.hasData) {
+              //       return _buildHomeScreen(); // Function to return HomeScreen widget
+              //     } else {
+              //       return _buildAuthenticationPage(); // Function to return AuthenticationPage widget
+              //     }
+              //   },
+              // )
             ],
           )),
     );
   }
 
-  Widget _buildHomeScreen() {
-    Future.delayed(Duration(seconds: widget.duration), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
-    });
-    return Container();
-  }
+  // Widget _buildHomeScreen() {
+  //   Future.delayed(Duration(seconds: widget.duration), () {
+  //     Navigator.pushReplacement(
+  //         context, MaterialPageRoute(builder: (context) => HomePage()));
+  //   });
+  //   return Container();
+  // }
 
   Widget _buildAuthenticationPage() {
     Future.delayed(Duration(seconds: widget.duration), () {

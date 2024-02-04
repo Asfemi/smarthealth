@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smarthealth/model/homecardData.dart';
 import '../widgets/charts.dart';
 import '../model/liveData.dart';
 import 'onBoardingHelper.dart';
@@ -39,6 +40,31 @@ class Utils {
         value: 'input/oxygenSaturation',
         index: 3,
         title: 'OxygenSaturation',
+      ),
+    ];
+  }
+
+  static List<HomeCardData> getHomecardsContents() {
+    return [
+      HomeCardData(
+        value: 19,
+        name: 'PulseRate',
+        Path: 'input/pulseRate',
+      ),
+      HomeCardData(
+        value: 32,
+        name: 'Temperature',
+        Path: "input/temperature",
+      ),
+      HomeCardData(
+        value: 24,
+        name: 'BreathingRate',
+       Path: 'input/breathingRate',
+      ),
+      HomeCardData(
+        value: 15,
+        name: 'Oxygen Saturation',
+        Path: 'input/oxygenSaturation',
       ),
     ];
   }
