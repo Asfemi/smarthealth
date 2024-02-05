@@ -77,7 +77,8 @@ class _ChartDetailsScreenState extends State<ChartDetailsScreen> {
                     child: Card(
                       color: Colors.white,
                       child:
-                          LineChartSample2(value: cardData[widget.index].Path),
+                        Charts(value: cardData[widget.index].Path, index: widget.index, title: cardData[widget.index].name,),
+                          //LineChartSample2(value: cardData[widget.index].Path),
                     ),
                   ),
                   const SizedBox(height: 30),

@@ -99,9 +99,9 @@ class _ChartsState extends State<Charts> {
     return MediaQuery(
       data: mediaQueryData.copyWith(textScaler: const TextScaler.linear(0.5)),
       child: SfCartesianChart(
-        margin: const EdgeInsets.all(0.0),
-        title: ChartTitle(text: widget.title),
-        //legend: Legend(),
+        margin: const EdgeInsets.all(16.0),
+        //title: ChartTitle(text: widget.title),
+        legend: Legend(),
         series: <LineSeries<LiveData, int>>[
           LineSeries<LiveData, int>(
             onRendererCreated: (ChartSeriesController controller) {
@@ -197,7 +197,7 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  late ChartSeriesController _chartSeriesController;
+ // late ChartSeriesController _chartSeriesController;
   List<Color> gradientColors = [
     kPrimaryColor,
     kDarkBackgroundColor,
@@ -212,9 +212,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
   @override
   void initState() {
     Timer.periodic(const Duration(seconds: 1), updateDataSource);
+    
     dataStreamListener();
-    dataStreamValue = 0;
-
+    dataStreamValue = 0.0;
+    chartsValue = [];
     super.initState();
   }
 
@@ -226,21 +227,45 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   dataStreamListener() {
     _dataStream = database.child(widget.value).onValue.listen((event) {
-      final double? data = event.snapshot.value as double?;
-      setState(() {
-        dataStreamValue = data!;
-      });
+      //final double data = event.snapshot.value as double;
+      final dynamic value = event.snapshot.value;
+      if (value is double) {
+        setState(() {
+          dataStreamValue = value;
+        });
+      } else if (value is String) {
+        // Handle the case where the value is a string and needs to be converted to double
+        setState(() {
+          dataStreamValue = double.parse(value);
+        });
+      }
+      // setState(() {
+      //   dataStreamValue = data!;
+      // });
     });
   }
 
-  double time = 1;
+  double time = 1.0;
+  // void updateDataSource(Timer timer) {
+  //   if (time != 61) {
+  //     chartsValue.add(FlSpot(time++, dataStreamValue));
+
+  //     chartsValue.removeAt(0);
+  //     _chartSeriesController.updateDataSource(
+  //         addedDataIndex: chartsValue.length - 1, removedDataIndex: 0);
+  //   }
+  //   setStateIfMounted(() => time = 1);
+  // }
+
   void updateDataSource(Timer timer) {
     if (time != 61) {
       chartsValue.add(FlSpot(time++, dataStreamValue));
 
       chartsValue.removeAt(0);
-      _chartSeriesController.updateDataSource(
-          addedDataIndex: chartsValue.length - 1, removedDataIndex: 0);
+
+      // Triggering a rebuild
+      setState(() {});
+
     }
     setStateIfMounted(() => time = 1);
   }
@@ -397,16 +422,16 @@ class _LineChartSample2State extends State<LineChartSample2> {
       lineBarsData: [
         LineChartBarData(
           spots: 
-          //chartsValue,
-          const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 2.1),
-            FlSpot(8, 5),
-            FlSpot(9.5, 1),
-            FlSpot(11, 4),
-          ],
+          chartsValue,
+          // const [
+          //   FlSpot(0, 3),
+          //   FlSpot(2.6, 2),
+          //   FlSpot(4.9, 5),
+          //   FlSpot(6.8, 2.1),
+          //   FlSpot(8, 5),
+          //   FlSpot(9.5, 1),
+          //   FlSpot(11, 4),
+          // ],
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
