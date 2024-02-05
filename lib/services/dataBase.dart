@@ -10,7 +10,7 @@ class DatabaseServices {
     final inputRef = database.child('input/');
     inputRef.update({
       'temperature': 34,
-      'breathingRate': 115,
+      'breathingRate': 20,
       'oxygenSaturation': 16,
       'pulseRate': 22
     });

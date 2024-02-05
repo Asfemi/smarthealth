@@ -85,12 +85,12 @@ class _ChartDetailsScreenState extends State<ChartDetailsScreen> {
                   SizedBox(
                     height: size.height * 0.25,
                     width: size.width,
-                    child: const Card(
+                    child:  Card(
                       color: Colors.white,
                       child: Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: ListTile(
                               title: Text('Current:'),
                               trailing: Text('0/min'),
@@ -98,20 +98,20 @@ class _ChartDetailsScreenState extends State<ChartDetailsScreen> {
                           ),
                           Expanded(
                             child: ListTile(
-                              title: Text('Minimum:'),
-                              trailing: Text('20/min'),
+                              title: const Text('Minimum:'),
+                              trailing: Text(cardData[widget.index].minimum),
                             ),
                           ),
                           Expanded(
                             child: ListTile(
-                              title: Text('Maximum:'),
-                              trailing: Text('10/min'),
+                              title: const Text('Maximum:'),
+                              trailing: Text(cardData[widget.index].maximum),
                             ),
                           ),
                           Expanded(
                             child: ListTile(
-                              title: Text('Average:'),
-                              trailing: Text('13/min'),
+                              title: const Text('Average:'),
+                              trailing: Text(cardData[widget.index].average),
                             ),
                           ),
                         ],

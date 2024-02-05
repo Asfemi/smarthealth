@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:smarthealth/model/homecardData.dart';
 import '../widgets/charts.dart';
@@ -49,87 +51,48 @@ class Utils {
       HomeCardData(
         value: 19,
         name: 'PulseRate',
-        Path: 'input/pulseRate',
+        Path: 'input/pulseRate', minimum: '60 beats/min', maximum: '220 beats/min', average: '70 - 75 beats/min',
       ),
       HomeCardData(
         value: 32,
         name: 'Temperature',
-        Path: "input/temperature",
+        Path: "input/temperature", minimum: '36.1 °C', maximum: '> 38 °C', average: '36.1 - 37.2 °C',
       ),
       HomeCardData(
         value: 24,
         name: 'BreathingRate',
-       Path: 'input/breathingRate',
+       Path: 'input/breathingRate', minimum: '10 breaths/min', maximum: '50 breaths/min', average: '12 - 16 breaths/min.',
       ),
       HomeCardData(
         value: 15,
         name: 'Oxygen Saturation',
         Path: 'input/oxygenSaturation',
+        minimum: '90% <', maximum: '100%', average: '97-98%.',
       ),
     ];
   }
 
   static List<LiveData> getOxygenSaturationChartData() {
-    return <LiveData>[
-      LiveData(0, 0),
-      LiveData(1, 7),
-      LiveData(2, 17),
-      LiveData(3, 5),
-      LiveData(4, 11),
-      LiveData(5, 8),
-      LiveData(6, 12),
-      LiveData(7, 7),
-      LiveData(8, 4),
-      LiveData(9, 15),
-      LiveData(10, 8),
-    ];
+    return List.generate(11, (index) {
+      return LiveData(index, Random().nextInt(6) + 95); // Simulating values between 95% and 100%
+    });
   }
 
   static List<LiveData> getBreathingRateChartData() {
-    return <LiveData>[
-      LiveData(0, 0),
-      LiveData(1, 4),
-      LiveData(2, 7),
-      LiveData(3, 1),
-      LiveData(4, 5),
-      LiveData(5, 8),
-      LiveData(6, 3),
-      LiveData(7, 17),
-      LiveData(8, 4),
-      LiveData(9, 15),
-      LiveData(10, 8),
-    ];
+    return List.generate(11, (index) {
+      return LiveData(index, Random().nextInt(10) + 10); // Simulating values between 10 and 20 breaths per minute
+    });
   }
 
   static List<LiveData> getTemperatureChartData() {
-    return <LiveData>[
-      LiveData(0, 0),
-      LiveData(1, 2),
-      LiveData(2, 17),
-      LiveData(3, 4),
-      LiveData(4, 11),
-      LiveData(5, 6),
-      LiveData(6, 12),
-      LiveData(7, 8),
-      LiveData(8, 4),
-      LiveData(9, 10),
-      LiveData(10, 4),
-    ];
+    return List.generate(11, (index) {
+      return LiveData(index, Random().nextInt(2) + 36.5); // Simulating values between 36.5°C and 38.5°C
+    });
   }
 
   static List<LiveData> getPulseRateChartData() {
-    return <LiveData>[
-      LiveData(0, 0),
-      LiveData(1, 4),
-      LiveData(2, 17),
-      LiveData(3, 1),
-      LiveData(4, 17),
-      LiveData(5, 4),
-      LiveData(6, 4),
-      LiveData(7, 17),
-      LiveData(8, 1),
-      LiveData(9, 17),
-      LiveData(10, 4),
-    ];
+    return List.generate(11, (index) {
+      return LiveData(index, Random().nextInt(20) + 60); // Simulating values between 60 and 80 beats per minute
+    });
   }
 }

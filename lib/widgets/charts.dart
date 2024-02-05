@@ -101,7 +101,10 @@ class _ChartsState extends State<Charts> {
       child: SfCartesianChart(
         margin: const EdgeInsets.all(16.0),
         //title: ChartTitle(text: widget.title),
-        legend: Legend(),
+        legend: const Legend(
+          isVisible: false,
+
+        ),
         series: <LineSeries<LiveData, int>>[
           LineSeries<LiveData, int>(
             onRendererCreated: (ChartSeriesController controller) {
