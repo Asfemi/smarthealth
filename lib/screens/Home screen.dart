@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    //final List<Widget> content = Utils.getChartContents();
+    final List<Widget> content = Utils.getChartContents();
 
     //String backgroundImage =
     //'assets/national-cancer-institute-701-FJcjLAQ-unsplash.jpg';
@@ -327,8 +327,9 @@ class _HomeScreenState extends State<HomeScreen>
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChartDetailsScreen(index: index, )));
+                                    builder: (context) => ChartDetailsScreen(
+                                          index: index,
+                                        )));
                           },
                           child: Card(
                             color: index == 0 ? kPrimaryColor : Colors.white,
@@ -388,208 +389,21 @@ class _HomeScreenState extends State<HomeScreen>
               ],
             ),
           ),
-          Container(),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ListView.builder(
+                  itemCount: content.length,
+                  itemBuilder: (ctxt, index) {
+                    return Card(
+                      child: content[index],
+                    );
+                  }),
+            ),
+          ),
           Container(),
         ],
       ),
-      // collective
-      // ? SizedBox(
-      //     height: size.height,
-      //     child: Column(
-      //       mainAxisAlignment: MainAxisAlignment.start,
-      //       crossAxisAlignment: CrossAxisAlignment.center,
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.topLeft,
-      //           child: Container(
-      //             //color: Colors.red,
-      //             height: size.height * 0.09,
-      //             padding:
-      //                 const EdgeInsets.only(left: 10.0, right: 10.0),
-      //             child: const Row(
-      //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //               children: [
-      //                 Column(
-      //                   crossAxisAlignment: CrossAxisAlignment.start,
-      //                   children: [
-      //                     Text('Name:'),
-      //                     Text('Id'),
-      //                     Text('Status:'),
-      //                     Text('Last Visit:'),
-      //                   ],
-      //                 ),
-      //                 Column(
-      //                   crossAxisAlignment: CrossAxisAlignment.end,
-      //                   children: [
-      //                     Text('Mr Ubutu Linux'),
-      //                     Text('xD78Jfebka'),
-      //                     Text('Attention needed!'),
-      //                     Text('15mins ago'),
-      //                   ],
-      //                 ),
-      //               ],
-      //             ),
-      //           ),
-      //         ),
-      //         const SizedBox(height: 10),
-      //         Expanded(
-      //           child: PageView(
-      //             controller: _controller,
-      //             onPageChanged: (int page) {
-      //               setState(() {
-      //                 pageIndex = page;
-      //               });
-      //             },
-      //             children: List.generate(
-      //               content.length,
-      //               (index) => Container(
-      //                 height: size.height / 2.5,
-      //                 width: size.shortestSide,
-      //                 padding: const EdgeInsets.all(10),
-      //                 margin: const EdgeInsets.only(
-      //                     left: 10, right: 10, top: 40, bottom: 20),
-      //                 decoration: BoxDecoration(
-      //                   color: Colors.white,
-      //                   borderRadius: BorderRadius.circular(20),
-      //                   boxShadow: [
-      //                     BoxShadow(
-      //                       color: kPrimaryColor.withOpacity(0.3),
-      //                       blurRadius: 20,
-      //                       offset: Offset.zero,
-      //                     ),
-      //                   ],
-      //                 ),
-      //                 clipBehavior: Clip.hardEdge,
-      //                 child: content[index],
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //         Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: List.generate(
-      //             content.length,
-      //             (index) => GestureDetector(
-      //               onTap: () {
-      //                 _controller.animateTo(
-      //                   MediaQuery.of(context).size.width * index,
-      //                   duration: const Duration(milliseconds: 500),
-      //                   curve: Curves.easeInOut,
-      //                 );
-      //               },
-      //               child: Container(
-      //                 width: 20,
-      //                 height: 20,
-      //                 margin: const EdgeInsets.all(10),
-      //                 decoration: BoxDecoration(
-      //                   color: kPrimaryColor,
-      //                   borderRadius: BorderRadius.circular(50),
-      //                   border: Border.all(
-      //                       width: 6,
-      //                       color: pageIndex == index
-      //                           ? kPrimaryColor
-      //                           : Theme.of(context).canvasColor),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   )
-      // : Container(
-      //     color: Colors.transparent,
-      //     height: size.height,
-      //     child: Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //         children: [
-      //           Expanded(
-      //             flex: 1,
-      //             child: Container(
-      //               decoration: BoxDecoration(
-      //                 color: Colors.white.withOpacity(0.9),
-      //                 borderRadius:
-      //                     const BorderRadius.all(Radius.circular(10)),
-      //                 border: Border.all(
-      //                   color: Colors.yellow,
-      //                   width: 2,
-      //                 ),
-      //               ),
-      //               child: const Charts(
-      //                 value: 'input/PulseRate',
-      //                 index: 0,
-      //                 title: 'PulseRate',
-      //               ),
-      //             ),
-      //           ),
-      //           const SizedBox(height: 10),
-      //           Expanded(
-      //             flex: 1,
-      //             child: Container(
-      //               decoration: BoxDecoration(
-      //                 color: Colors.white.withOpacity(0.9),
-      //                 borderRadius:
-      //                     const BorderRadius.all(Radius.circular(10)),
-      //                 border: Border.all(
-      //                   color: Colors.red,
-      //                   width: 2,
-      //                 ),
-      //               ),
-      //               child: const Charts(
-      //                 value: 'input/Temperature',
-      //                 index: 1,
-      //                 title: 'Temperature',
-      //               ),
-      //             ),
-      //           ),
-      //           const SizedBox(height: 10),
-      //           Expanded(
-      //             flex: 1,
-      //             child: Container(
-      //               decoration: BoxDecoration(
-      //                 color: Colors.white.withOpacity(0.9),
-      //                 borderRadius:
-      //                     const BorderRadius.all(Radius.circular(10)),
-      //                 border: Border.all(
-      //                   color: Colors.green,
-      //                   width: 2,
-      //                 ),
-      //               ),
-      //               child: const Charts(
-      //                 value: 'input/breathingRate',
-      //                 index: 2,
-      //                 title: 'breathingRate',
-      //               ),
-      //             ),
-      //           ),
-      //           const SizedBox(height: 10),
-      //           Expanded(
-      //             flex: 1,
-      //             child: Container(
-      //               decoration: BoxDecoration(
-      //                 color: Colors.white.withOpacity(0.9),
-      //                 borderRadius:
-      //                     const BorderRadius.all(Radius.circular(10)),
-      //                 border: Border.all(
-      //                   color: Colors.blue,
-      //                   width: 2,
-      //                 ),
-      //               ),
-      //               child: const Charts(
-      //                 value: 'input/oxygenSaturation',
-      //                 index: 3,
-      //                 title: 'OxygenSaturation',
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
     );
-
-    //hey hey
   }
 }

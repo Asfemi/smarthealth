@@ -26,7 +26,7 @@ class Charts extends StatefulWidget {
 }
 
 class _ChartsState extends State<Charts> {
-  late ChartSeriesController _chartSeriesController;
+  late ChartSeriesController? _chartSeriesController;
   final database = FirebaseDatabase.instance.ref();
   late StreamSubscription _dataStream;
   //late List<LiveData> tempData;
@@ -36,7 +36,7 @@ class _ChartsState extends State<Charts> {
   void initState() {
     Timer.periodic(const Duration(seconds: 1), updateDataSource);
     dataStreamListener();
-    dataStreamValue = 0;
+    dataStreamValue = 1;
     // Utils.getChartData();
     Utils.getBreathingRateChartData();
     Utils.getTemperatureChartData();
@@ -53,11 +53,20 @@ class _ChartsState extends State<Charts> {
   }
 
   @override
+void dispose() {
+  _chartSeriesController = null; // Assign null when disposing
+  _dataStream.cancel();
+  super.dispose();
+}
+
+  @override
   void deactivate() {
     //_chartSeriesController.
     _dataStream.cancel();
     super.deactivate();
   }
+
+  
 
   dataStreamListener() {
     _dataStream = database.child(widget.value).onValue.listen((event) {
@@ -70,11 +79,11 @@ class _ChartsState extends State<Charts> {
 
   int time = 1;
   void updateDataSource(Timer timer) {
-    if (time != 61) {
+    while (time != 61) {
       chartsList[widget.index].add(LiveData(time++, dataStreamValue));
       //oxyData.add(LiveData(time++, tempStreamValue));
       chartsList[widget.index].removeAt(0);
-      _chartSeriesController.updateDataSource(
+      _chartSeriesController?.updateDataSource(
           addedDataIndex: chartsList[widget.index].length - 1,
           removedDataIndex: 0);
     }
@@ -103,7 +112,6 @@ class _ChartsState extends State<Charts> {
         //title: ChartTitle(text: widget.title),
         legend: const Legend(
           isVisible: false,
-
         ),
         series: <LineSeries<LiveData, int>>[
           LineSeries<LiveData, int>(
@@ -200,7 +208,7 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
- // late ChartSeriesController _chartSeriesController;
+  // late ChartSeriesController _chartSeriesController;
   List<Color> gradientColors = [
     kPrimaryColor,
     kDarkBackgroundColor,
@@ -215,7 +223,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
   @override
   void initState() {
     Timer.periodic(const Duration(seconds: 1), updateDataSource);
-    
+
     dataStreamListener();
     dataStreamValue = 0.0;
     chartsValue = [];
@@ -268,7 +276,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
       // Triggering a rebuild
       setState(() {});
-
     }
     setStateIfMounted(() => time = 1);
   }
@@ -424,8 +431,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: 
-          chartsValue,
+          spots: chartsValue,
           // const [
           //   FlSpot(0, 3),
           //   FlSpot(2.6, 2),

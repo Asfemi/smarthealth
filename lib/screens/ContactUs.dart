@@ -23,20 +23,24 @@ class _ContactUsState extends State<ContactUs> {
           children: [
             GestureDetector(
                 onTap: () {
+                  launchUrl(Uri.parse('http://asfemi.github.io/'));
+                },
+                child: bigText('Portfollio')),
+            const SizedBox(height: 5),
+            const Divider(thickness: 2),
+            GestureDetector(
+                onTap: () {
                   launchUrl(Uri.parse('https//www.github.com/Asfemi'));
                 },
                 child: bigText('GitHub')),
             const SizedBox(height: 5),
-            // smallText('github.com/Asfemi'),
-            // const SizedBox(height: 20),
             const Divider(thickness: 2),
             GestureDetector(
                 onTap: () {
-                  launchUrl(
-                      Uri.parse('https://www.stackoverflow.com/users/13132398/asfemi'));
+                  launchUrl(Uri.parse(
+                      'https://www.stackoverflow.com/users/13132398/asfemi'));
                 },
                 child: bigText('StackOverflow')),
-
             const SizedBox(height: 20),
             const Divider(thickness: 2),
             GestureDetector(
@@ -45,7 +49,6 @@ class _ContactUsState extends State<ContactUs> {
                       'https://www.linkedin.com/in/ayodele-s-a0162116a/'));
                 },
                 child: bigText('LinkedIn')),
-
             const SizedBox(height: 20),
             const Divider(thickness: 2),
             bigText('Whatsapp'),

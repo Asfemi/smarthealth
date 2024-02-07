@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:provider/provider.dart';
-import 'package:smarthealth/constants.dart';
+import 'package:smarthealth/config.dart';
 import 'package:flutter/material.dart';
 import 'package:smarthealth/screens/AuthenticationPage.dart';
 import 'package:smarthealth/screens/ContactUs.dart';
@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:smarthealth/screens/Settings.dart';
 import 'package:smarthealth/screens/splashScreen.dart';
 import 'package:smarthealth/services/authentication.dart';
+import 'package:smarthealth/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,14 +36,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //final theme = AcademiaTheme.dark();
     return MaterialApp(
-      theme: ThemeData(
-          backgroundColor: Colors.white,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            iconTheme: IconThemeData(color: kPrimaryColor),
-            // color: Colors.white,
-          ),
-          primaryColor: kPrimaryColor),
+      theme: SmartHealthTheme.light(), //3
+      darkTheme: SmartHealthTheme.dark(), //4
+      themeMode: currentTheme.currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'SmartHealth',
       home: SplashScreen(
