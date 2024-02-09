@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     final List<Widget> content = Utils.getChartContents();
-
+     //final List<> content = Utils.getChartContents();
     //String backgroundImage =
     //'assets/national-cancer-institute-701-FJcjLAQ-unsplash.jpg';
 
@@ -397,8 +397,14 @@ class _HomeScreenState extends State<HomeScreen>
               child: ListView.builder(
                   itemCount: content.length,
                   itemBuilder: (ctxt, index) {
-                    return Card(
-                      child: content[index],
+                    return Column(
+                      children: [
+                        Text(cardData[index].name),
+                        SizedBox(height: 6),
+                        Card(
+                          child: content[index],
+                        ),
+                      ],
                     );
                   }),
             ),

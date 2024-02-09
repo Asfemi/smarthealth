@@ -27,7 +27,7 @@ class Utils {
         value: 'input/pulseRate',
         index: 0,
         title: 'PulseRate',
-      ),
+      ) ,
       const Charts(
         value: 'input/temperature',
         index: 1,
