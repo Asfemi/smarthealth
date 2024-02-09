@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SmartHealth',
       home: SplashScreen(
-        goToPage: const AuthenticationPage(),
+        goToPage: const HomeScreen(),
         duration: 2,
       ),
       routes: {

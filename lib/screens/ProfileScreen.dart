@@ -25,42 +25,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              backgroundColor: kPrimaryColor,
-              minRadius: 60.0,
-              child: ValueListenableBuilder(
-                  valueListenable: authProvider,
-                  builder: (context, value, child) {
-                    return (authProvider.value == '' ||
-                            authProvider.value == null)
-                        ? Column(
-                            children: [
-                              CircleAvatar(
+            ValueListenableBuilder(
+                valueListenable: authProvider,
+                builder: (context, value, child) {
+                  return (authProvider.value == '' ||
+                          authProvider.value == null)
+                      ? Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: kPrimaryColor,
+                              minRadius: 60.0,
+                              child: CircleAvatar(
                                 radius: 50.0,
-                                backgroundImage: NetworkImage(
-                                  authProvider.value.user!.photoURL.toString(),
-                                  
-                                ),
+                                child: Icon(Icons.person),
+                                // backgroundImage: NetworkImage(
+                                //     'https://media.licdn.com/dms/image/D4E03AQGWJgkLLmRVzQ/profile-displayphoto-shrink_400_400/0/1703380869904?e=1712793600&v=beta&t=VWL1VDFxLqUEOw9PH8wnvk2l3AdOHf5rn__m_oljwEQ'
+                                //     //authProvider.value.user!.photoURL.toString(),
+
+                                //     ),
                               ),
-                              const SizedBox(height: 20),
-                              Center(
-                                  child: Text(
-                                authProvider.value.user!.displayName.toString(),
-                              )),
-                              const SizedBox(height: 20),
-                              Center(
-                                  child: Text(
-                                authProvider.value.user!.email.toString(),
-                              )),
-                            ],
-                          )
-                        : const CircleAvatar(
-                            radius: 50.0,
-                            child: Icon(Icons.person),
-                          );
-                  }),
-            ),
-            
+                            ),
+                            const SizedBox(height: 20),
+                            Center(
+                                child: Text("user"
+                                    // authProvider.value.user!.displayName.toString(),
+                                    )),
+                            const SizedBox(height: 20),
+                            Center(
+                                child: Text("email"
+                                    //authProvider.value.user!.email.toString(),
+                                    )),
+                          ],
+                        )
+                      : const CircleAvatar(
+                          radius: 50.0,
+                          child: Icon(Icons.person),
+                        );
+                }),
           ],
         ),
       ),

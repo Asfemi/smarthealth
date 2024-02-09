@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen>
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Jocelyn',
+              'User',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ),
             Row(
@@ -286,21 +286,23 @@ class _HomeScreenState extends State<HomeScreen>
             child: Column(
               children: [
                 const SizedBox(height: 40),
-                CircleAvatar(
-                  backgroundColor: kPrimaryColor,
-                  radius: 85,
-                  child: Container(
-                    padding: const EdgeInsets.all(4.0),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: AnalogClock(
-                      isLive: true,
-                      width: 120,
-                      height: 120,
-                      showDigitalClock: false,
-                      datetime: DateTime(2024, 1, 1, 9, 12, 15),
+                Flexible(
+                  child: CircleAvatar(
+                    backgroundColor: kPrimaryColor,
+                    radius: 85,
+                    child: Container(
+                      padding: const EdgeInsets.all(4.0),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: AnalogClock(
+                        isLive: true,
+                        width: 120,
+                        height: 120,
+                        showDigitalClock: false,
+                        datetime: DateTime(2024, 1, 1, 9, 12, 15),
+                      ),
                     ),
                   ),
                 ),

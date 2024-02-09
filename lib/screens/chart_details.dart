@@ -37,9 +37,11 @@ class _ChartDetailsScreenState extends State<ChartDetailsScreen> {
             padding: const EdgeInsets.all(20.0),
             child: Row(
               children: [
-                const Text(
-                  '4/6',
-                  style: TextStyle(fontSize: 70, fontWeight: FontWeight.w900),
+                Flexible(
+                  child: const Text(
+                    '4/6',
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.w900),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 SizedBox(
@@ -76,16 +78,19 @@ class _ChartDetailsScreenState extends State<ChartDetailsScreen> {
                     width: size.width,
                     child: Card(
                       color: Colors.white,
-                      child:
-                        Charts(value: cardData[widget.index].Path, index: widget.index, title: cardData[widget.index].name,),
-                          //LineChartSample2(value: cardData[widget.index].Path),
+                      child: Charts(
+                        value: cardData[widget.index].Path,
+                        index: widget.index,
+                        title: cardData[widget.index].name,
+                      ),
+                      //LineChartSample2(value: cardData[widget.index].Path),
                     ),
                   ),
                   const SizedBox(height: 30),
                   SizedBox(
                     height: size.height * 0.25,
                     width: size.width,
-                    child:  Card(
+                    child: Card(
                       color: Colors.white,
                       child: Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -109,7 +109,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: size.shortestSide * 0.3,
                 ),
               ),
-              _buildAuthenticationPage()
+              _buildHomeScreen()
               // FutureBuilder<User?>(
               //   future: checkAuthStatus(),
               //   builder: (context, snapshot) {
@@ -125,13 +125,13 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  // Widget _buildHomeScreen() {
-  //   Future.delayed(Duration(seconds: widget.duration), () {
-  //     Navigator.pushReplacement(
-  //         context, MaterialPageRoute(builder: (context) => HomePage()));
-  //   });
-  //   return Container();
-  // }
+  Widget _buildHomeScreen() {
+    Future.delayed(Duration(seconds: widget.duration), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    });
+    return Container();
+  }
 
   Widget _buildAuthenticationPage() {
     Future.delayed(Duration(seconds: widget.duration), () {
