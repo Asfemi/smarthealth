@@ -1,9 +1,16 @@
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:smarthealth/screens/AuthenticationPage.dart';
+import 'package:smarthealth/screens/Homepage.dart';
 
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class SplashScreen extends StatefulWidget {
   static String id = 'start';
 
@@ -22,7 +29,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool initialized = false;
-
+  late FirebaseAuth user;
   bool error = false;
 
   //initialize the firebase project using firebaseCore
@@ -34,7 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // Define an async function to initialize FlutterFire
   void initializeFlutterFire() async {
-    await Firebase.initializeApp();
+    if (!Platform.isWindows) {
+      await Firebase.initializeApp();
+    }
+
     try {
       // Wait for Firebase to initialize and set `_initialized` state to true
       setState(() {
@@ -49,8 +59,6 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }
   }
-
-
 
   String iconLetter = 'X';
 
@@ -73,24 +81,64 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     Size size = MediaQuery.of(context).size;
-    Future.delayed(Duration(seconds: widget.duration), () {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => widget.goToPage));
-    });
+
+    // Future<User?> checkAuthStatus() async {
+    //   try {
+    //     final user = await FirebaseAuth.instance.currentUser;
+    //     if (user != null) {
+    //       return user;
+    //     } else {
+    //       return null;
+    //     }
+    //   } catch (e) {
+    //     log(e.toString()); // Handle errors here
+    //     return null;
+    //   }
+    // }
 
     return Scaffold(
       body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Center(
-            child: Image.asset(
-              'assets/heart-beat.png',
-              height: size.shortestSide * 0.3,
-              width: size.shortestSide * 0.3,
-            ),
+          decoration: const BoxDecoration(color: kLightBackgroundColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Image.asset(
+                  'assets/heart-beat.png',
+                  height: size.shortestSide * 0.3,
+                  width: size.shortestSide * 0.3,
+                ),
+              ),
+              _buildHomeScreen()
+              // FutureBuilder<User?>(
+              //   future: checkAuthStatus(),
+              //   builder: (context, snapshot) {
+              //     if (snapshot.hasData) {
+              //       return _buildHomeScreen(); // Function to return HomeScreen widget
+              //     } else {
+              //       return _buildAuthenticationPage(); // Function to return AuthenticationPage widget
+              //     }
+              //   },
+              // )
+            ],
           )),
     );
+  }
+
+  Widget _buildHomeScreen() {
+    Future.delayed(Duration(seconds: widget.duration), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    });
+    return Container();
+  }
+
+  Widget _buildAuthenticationPage() {
+    Future.delayed(Duration(seconds: widget.duration), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => AuthenticationPage()));
+    });
+    return Container();
   }
 }
 

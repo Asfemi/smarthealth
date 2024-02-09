@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "960420751097",
+    "firebase_url": "https://smarthealth-1o1-default-rtdb.firebaseio.com",
     "project_id": "smarthealth-1o1",
     "storage_bucket": "smarthealth-1o1.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "960420751097-1dq96tn93eacj01t8luma6ed89pgfjmv.apps.googleusercontent.com",
+          "client_id": "960420751097-bvg4cs0c62sd2vou542r11v5911u513g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.asfemi.smarthealth",
+            "certificate_hash": "c40ab5eee8a39264ae6355d17d14a118570ae0c7"
+          }
+        },
+        {
+          "client_id": "960420751097-8b38fog0s26ejnpe4ia1htnndtajja48.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

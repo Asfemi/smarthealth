@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class DatabaseServices {
@@ -10,7 +10,7 @@ class DatabaseServices {
     final inputRef = database.child('input/');
     inputRef.update({
       'temperature': 34,
-      'breathingRate': 115,
+      'breathingRate': 20,
       'oxygenSaturation': 16,
       'pulseRate': 22
     });
